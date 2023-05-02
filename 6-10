@@ -1,0 +1,178 @@
+1.
+
+#include <stdio.h>
+
+int main() {
+    float chennai[7], delhi[7], haveri[7], gangtok[7];
+    float chennaiTemp, gangtokTemp, delhiTemp, haveriTemp;
+    int i;
+
+    printf("Enter the temperature in Chennai for the week:\n");
+    for (i = 0; i < 7; i++) {
+        printf("Day %d: ", i+1);
+        scanf("%f", &chennai[i]);
+    }
+
+    for (i = 0; i < 7; i++) {
+        delhi[i] = chennai[i] - 8.0;
+        haveri[i] = chennai[i] + 5.0;
+    }
+
+    for (i = 0; i < 7; i++) {
+        gangtok[i] = haveri[i] - delhi[i];
+    }
+
+    chennaiTemp = delhiTemp = haveriTemp = gangtokTemp = 0.0;
+    for (i = 0; i < 7; i++) {
+        chennaiTemp += chennai[i];
+        delhiTemp += delhi[i];
+        haveriTemp += haveri[i];
+        gangtokTemp += gangtok[i];
+    }
+    chennaiTemp /= 7.0;
+    delhiTemp /= 7.0;
+    haveriTemp /= 7.0;
+    gangtokTemp /= 7.0;
+
+    printf("\nAverage temperatures for the week:\n");
+    printf("Chennai: %.2f C\n", chennaiTemp);
+    printf("Delhi: %.2f C\n", delhiTemp);
+    printf("Haveri: %.2f C\n", haveriTemp);
+    printf("Gangtok: %.2f C\n", gangtokTemp);
+
+    return 0;
+}
+
+2.
+
+#include <stdio.h>
+
+int getSumOfDigits(int num);
+int isOdd(int num);
+
+int main() {
+    int sum = 0;
+    int numCount = 0;
+
+    for(int i = 1000; i <= 9998; i += 2) {
+
+        sum += i;
+        numCount++;
+    }
+
+    while(sum > 9) {
+        sum = getSumOfDigits(sum);
+    }
+
+    if(isOdd(sum)) {
+        printf("Odd Found\n");
+    } else {
+        printf("Even Found\n");
+    }
+    
+    printf("Total even four-digit numbers: %d", numCount);
+    
+    return 0;
+}
+
+int getSumOfDigits(int num) {
+    int sum = 0;
+    while(num > 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+int isOdd(int num) {
+    if(num % 2 == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+3. 
+
+#include <stdio.h>
+#include <string.h>
+
+#define PASSWORD "123456789" 
+
+int main() {
+    char matrix[3][3]; 
+    char diagonal[2]; 
+    printf("Enter a 3x3 matrix:\n");
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            scanf(" %c", &matrix[i][j]);
+        }
+    }
+    diagonal[0] = matrix[0][0];
+    diagonal[1] = matrix[1][1];
+    diagonal[2] = '\0'
+    if(strcmp(diagonal, PASSWORD) == 0) {
+        printf("Password accepted!\n");
+    } else {
+        printf("Password incorrect!\n");
+    }
+
+    return 0;
+}
+
+4.
+
+#include <stdio.h>
+
+int main() {
+    int original_marks[25], revised_marks[25], birth_month[25];
+    int original_total = 0, revised_total = 0;
+    float original_average, revised_average;
+    int i;
+
+    printf("Enter the students' original marks and month of birth:\n");
+    for (i = 0; i < 25; i++) {
+        printf("Student %d: ", i+1);
+        scanf("%d %d", &original_marks[i], &birth_month[i]);
+
+        revised_marks[i] = original_marks[i] + birth_month[i];
+        revised_total += revised_marks[i];
+
+        original_total += original_marks[i];
+    }
+
+    original_average = (float) original_total / 25;
+    revised_average = (float) revised_total / 25;
+
+    if (revised_average - original_average >= 5) {
+        printf("Can implement - Significant increase in class average\n");
+    } else {
+        printf("Need not implement - No significant increase in class average\n");
+    }
+
+    return 0;
+}
+
+5.
+
+#include <stdio.h>
+int power(int x, int n);
+int main() {
+    int x, n, result;
+    printf("Enter a value for x: ");
+    scanf("%d", &x);
+    printf("Enter a value for n (less than or equal to 5): ");
+    scanf("%d", &n);
+    result = power(x, n);
+    printf("%d raised to the power of %d is %d\n", x, n, result);
+    return 0;
+}
+int power(int x, int n) {
+    if (n == 0) {
+        return 1;
+    } else if (n == 1) {
+        return x;
+    } else {
+        return x * power(x, n-1);
+    }
+}
